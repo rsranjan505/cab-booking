@@ -46,6 +46,7 @@ class DriverController extends Controller
         ]);
         $request['status'] = 'pending';
         $request['is_active'] = 1;
+        $request['access_code'] = rand(1000,9999);
 
         $driver = new Driver();
         $driver->create($request->all());
@@ -87,6 +88,10 @@ class DriverController extends Controller
             'email.required' => 'Email is required',
             'mobile.required' => 'Mobile is required',
         ]);
+
+        if($driver->access_code == ''){
+            $request['access_code'] = rand(1000,9999);
+        }
 
         $driver->update($request->all());
         return to_route('drivers.index');

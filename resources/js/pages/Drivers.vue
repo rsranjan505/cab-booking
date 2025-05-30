@@ -78,6 +78,7 @@ function toggleDropdown(driverid : number) {
                                 <th scope="col" class="px-6 py-3">Name</th>
                                 <th scope="col" class="px-6 py-3">Email</th>
                                 <th scope="col" class="px-6 py-3">Mobile</th>
+                                <th scope="col" class="px-6 py-3">Access Code</th>
                                 <th scope="col" class="px-6 py-3">State</th>
                                 <th scope="col" class="px-6 py-3">Country</th>
                                 <th scope="col" class="px-6 py-3">Zip code</th>
@@ -98,6 +99,9 @@ function toggleDropdown(driverid : number) {
                                 </td>
                                 <td class="px-6 py-4">
                                     {{ driver.mobile }}
+                                </td>
+                                <td class="px-6 py-4">
+                                    {{ driver.access_code }}
                                 </td>
                                 <td class="px-6 py-4">
                                     {{ driver.state }}
