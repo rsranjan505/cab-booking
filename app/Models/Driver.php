@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Driver extends Model
 {
     protected $table = 'drivers';
-    protected $fillable = ['name', 'email', 'mobile', 'address', 'city', 'state', 'country_id', 'zip', 'is_own_vechile','vechile_type', 'vechile_number', 'vechile_color', 'vechile_model', 'vechile_capacity', 'status', 'is_active'];
+    protected $fillable = ['name', 'email', 'mobile', 'address', 'city', 'state', 'country_id', 'zip', 'is_own_vechile','vechile_type', 'vechile_number', 'vechile_color', 'vechile_model', 'vechile_capacity', 'access_code', 'status', 'is_active'];
 
     protected $dates = ['created_at', 'updated_at'];
     protected $casts = [
