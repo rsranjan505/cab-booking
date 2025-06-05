@@ -77,7 +77,7 @@ class BookingController extends Controller
     public function dashborad_items()
     {
         $dashboard_items = [
-            'upcoming_bookings' => Booking::where('booking_status', 'booked')->andWhere('booking_date', '>=', date('Y-m-d'))->count(),
+            'upcoming_bookings' => Booking::where('booking_status', 'booked')->where('booking_date', '>=', date('Y-m-d'))->count(),
             'completed_bookings' => Booking::where('booking_status', 'completed')->count(),
         ];
 
