@@ -54,7 +54,39 @@ class BookingController extends Controller
 
     public function booking_list($driver_id)
     {
-        $bookings= Booking::where('driver_id', $driver_id)->get();
+        $bookings= Booking::where('driver_id', $driver_id)->latest()->get();
         return ok($bookings, 'Booking list');
+    }
+
+    public function booking_details(String $id)
+    {
+        $booking = Booking::where('id', $id)->with('driver')->first();
+        return ok($booking, 'Booking details');
+    }
+
+
+    // public function running_booking()
+    // {
+    //     $bookings= Booking::where('booking_status', 'running')->first();
+    //     return ok($bookings, 'current Booking');
+    // }
+
+
+    // dashborad items
+
+    public function dashborad_items()
+    {
+        $dashboard_items = [
+            'upcoming_bookings' => Booking::where('booking_status', 'pending')->count(),
+            'completed_bookings' => Booking::where('booking_status', 'completed')->count(),
+        ];
+
+        $bookings = Booking::where('booking_status', 'running')->first();
+        if($bookings){
+            $dashboard_items['current_booking'] = $bookings;
+        }
+
+        return ok($dashboard_items, 'dashboard items');
+
     }
 }

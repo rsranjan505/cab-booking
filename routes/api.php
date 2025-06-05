@@ -17,4 +17,7 @@ Route::get('/booking/status/{id}', [BookingController::class, 'booking_update'])
 Route::delete('/booking/delete/{id}', [BookingController::class, 'booking_delete']);
 Route::get('/booking/list/{driver_id}', [BookingController::class, 'booking_list']);
 
+Route::get('/booking/details/{id}', [BookingController::class, 'booking_details']);
+Route::get('/dashboard-items', [BookingController::class, 'dashborad_items']);
+
 
