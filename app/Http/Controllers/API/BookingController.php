@@ -26,7 +26,7 @@ class BookingController extends Controller
             'booking_to.required' => 'Booking to is required',
             'booking_date.required' => 'Booking date is required',
         ]);
-
+        $request['booking_status'] = isset($request['booking_status']) ? $request['booking_status'] : 'pending';
         $booking = new Booking();
         $booking->create($request->all());
         return ok($booking, 'Booking added successfully');
@@ -77,7 +77,7 @@ class BookingController extends Controller
     public function dashborad_items()
     {
         $dashboard_items = [
-            'upcoming_bookings' => Booking::where('booking_status', 'pending')->count(),
+            'upcoming_bookings' => Booking::where('booking_status', 'booked')->andWhere('booking_date', '>=', date('Y-m-d'))->count(),
             'completed_bookings' => Booking::where('booking_status', 'completed')->count(),
         ];
 
