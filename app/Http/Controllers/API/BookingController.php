@@ -27,6 +27,10 @@ class BookingController extends Controller
             'booking_date.required' => 'Booking date is required',
         ]);
         $request['booking_status'] = isset($request['booking_status']) ? $request['booking_status'] : 'pending';
+        if($request['booking_status'] == 'running'){
+            $request['booking_time'] = date('H:i:s');
+        }
+
         $booking = new Booking();
         $booking->create($request->all());
         return ok($booking, 'Booking added successfully');
@@ -35,7 +39,7 @@ class BookingController extends Controller
     public function booking_update(String $id)
     {
         $booking = Booking::where('id', $id)->first();
-        $booking->update(['booking_status' => 'completed']);
+        $booking->update(['booking_status' => 'completed','completed_at' => date('Y-m-d H:i:s')]);
         return ok($booking, 'Booking updated successfully');
     }
 
