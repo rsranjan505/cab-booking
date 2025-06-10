@@ -25,4 +25,11 @@ class DriverController extends Controller
         $driver->update($request->all());
         return ok($driver, 'Driver updated successfully');
     }
+
+    public function getDriverProfile($driver_id)
+    {
+        $driver = Driver::where('id', $driver_id)->first();
+        return ok($driver, 'Driver profile');
+    }
+
 }

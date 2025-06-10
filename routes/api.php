@@ -11,7 +11,9 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 Route::post('/login', [LoginController::class, 'mobile_login']);
+Route::get('/driver-profile/{id}', [DriverController::class, 'getDriverProfile']);
 Route::post('/update-driver', [DriverController::class, 'update_driver']);
+
 Route::post('/new-booking', [BookingController::class, 'add_booking']);
 Route::get('/booking/status/{id}', [BookingController::class, 'booking_update']);
 Route::delete('/booking/delete/{id}', [BookingController::class, 'booking_delete']);

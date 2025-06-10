@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Models\Booking;
+use App\Models\Driver;
 use Dotenv\Util\Str;
 use Illuminate\Http\Request;
 
@@ -82,10 +83,10 @@ class BookingController extends Controller
     {
         $dashboard_items = [
             'upcoming_bookings' => Booking::where('driver_id', $driver_id)->where('booking_status', 'booked')->where('booking_date', '>=', date('Y-m-d'))->count(),
-            'completed_bookings' => Booking::where('booking_status', 'completed')->count(),
+            'completed_bookings' => Booking::where('driver_id', $driver_id)->where('booking_status', 'completed')->count(),
         ];
 
-        $bookings = Booking::where('booking_status', 'running')->first();
+        $bookings = Booking::where('driver_id', $driver_id)->where('booking_status', 'running')->first();
         if($bookings){
             $dashboard_items['current_booking'] = $bookings;
         }
@@ -93,4 +94,6 @@ class BookingController extends Controller
         return ok($dashboard_items, 'dashboard items');
 
     }
+
+
 }
